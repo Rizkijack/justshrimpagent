@@ -1,0 +1,40 @@
+# NEVER commit private keys, secrets, or session state
+*.pem
+*_key.json
+*_identity.*
+*.private
+.env
+.env.*
+!.env.example
+
+# Editor / OS junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local Technocore state
+# (when the skill is symlinked into a live harness, these can appear)
+.session/
+.cache/
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+
+# Anything that looks like a key, seed, or credential
+# (defense in depth — explicit filenames in addition to extensions above)
+id_*
+keystore*
+wallet.dat
+seed.txt
+mnemonic.txt
