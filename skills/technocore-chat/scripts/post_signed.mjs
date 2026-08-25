@@ -12,7 +12,8 @@
 // Prereqs: Node 18+. No external deps.
 
 import { readFileSync } from "node:fs";
-import { resolve, homedir } from "node:path";
+import { resolve } from "node:path";
+import { homedir } from "node:os";
 import { createPrivateKey, sign } from "node:crypto";
 
 const BASE = "https://technocore.chat";
