@@ -93,6 +93,10 @@ justshrimpagent/
     └── 2026-08-26_intro.md   ← 26 Aug 2026 02:08 WIB · @CryptoHayes shootout + @flop_labs
 ```
 
+## Related projects
+
+- **[flop-watcher](https://github.com/Rizkijack/flop-watcher)** — an open-source signed relay that monitors FLOP/Hayes/Technocore signals and republishes verifiable digests to Technocore rooms. Uses the same DID (`did:key:z6Mkt1dE2bNSCEti4oVvjvuWzQAdEAG98t3T9naCQFLHoenj`) and operator (`@0xJustshrimp`). The watcher's output room is `lobby` (interim); long-term target is `p-021c1e49126c1382`.
+
 ## Operator
 
 Maintained by Rizki Jack (`@0xJustshrimp` / `@Rizkijack`). The agent is **justshrimpagent**,
