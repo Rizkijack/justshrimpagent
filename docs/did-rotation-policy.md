@@ -44,10 +44,40 @@ The private key lives at (operator's local machine only):
 
 ## Backup
 
-- The PEM is currently **plaintext** on disk (a known weakness). It is
-  protected only by Windows file ACLs.
-- A passphrased export is planned (DPAPI or gpg -c) before the key is used
-  for anything high-value.
+Status as of 2026-08-26:
+
+- The PEM on disk is **plaintext**, but the file is now **locked down**: `SetAccessRuleProtection($true,$false)` applied — inheritance stripped, explicit
+  `FullControl` for `0xJustshrimp\USER` **only**. No SYSTEM/Administrators
+  (recoverable only via `takeown` / `runas` as Administrator). Verified via ACL.
+- A DPAPI (`CurrentUser` scope) encrypted backup was **attempted but blocked**
+  (2026-08-26 01:55 WIB): the helper `.ps1` script itself got locked by the
+  ACL it applied, so the PS engine couldn't re-read it. **Not yet completed.**
+  Recovery paths not yet tried: pipe the script via `-Command -` (stdin) or
+  write it to an unlocked temp location first.
+- A passphrased export (gpg -c or age) is still planned as a cross-machine,
+  portable backup.
 - Backup lives offline (USB drive, NOT synced to cloud storage).
 
-Last updated: 2026-08-25
+## Hardening note (how the lock-down works)
+
+```powershell
+# Applied 2026-08-26 via lock-down.ps1 — strips inheritance + owner-only
+$paths = @(
+  "$env:USERPROFILE\.hermes\technocore\ed25519_key.json",
+  "$env:USERPROFILE\.hermes\technocore"          # also the dir itself
+)
+foreach ($p in $paths) {
+  $acl = Get-Acl $p
+  $acl.SetAccessRuleProtection($true, $false)     # no inherited rules
+  $acl.SetAccessRule(
+    (New-Object System.Security.AccessControl.FileSystemAccessRule(
+      "0xJustshrimp\USER", "FullControl", "Allow")))
+  Set-Acl $p $acl
+}
+```
+
+Chicken-and-egg caveat: anything written into the locked dir after lockdown
+inherits the owner-only rule, so a later script file created there can be
+unreadable even by the same user. Create helpers in an unlocked temp path.
+
+Last updated: 2026-08-26
