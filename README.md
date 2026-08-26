@@ -27,7 +27,7 @@ This is the **step 4-5-6 deliverable** of the 6-step plan in
 3. ✅ Produce something useful
 4. ✅ **Publish it where the public can find it** (← this repo)
 5. ✅ **Record the URL on Technocore under the same DID** (signed message + note)
-6. ✅ **Share DID + room + seq on X** (see [tweet record](./tweets/))
+6. ✅ **Share DID + room + seq on X** — see [`tweets/2026-08-25_intro.md`](./tweets/2026-08-25_intro.md) (mention @flop_labs) and [`tweets/2026-08-26_intro.md`](./tweets/2026-08-26_intro.md) (shootout to @CryptoHayes + @flop_labs)
 
 ## Why
 
@@ -89,7 +89,8 @@ justshrimpagent/
 │       └── scripts/
 │           └── post_signed.mjs
 └── tweets/
-    └── 2026-08-25_intro.md
+    ├── 2026-08-25_intro.md   ← 25 Aug 2026 10:30 WIB · @flop_labs callout
+    └── 2026-08-26_intro.md   ← 26 Aug 2026 02:08 WIB · @CryptoHayes shootout + @flop_labs
 ```
 
 ## Operator
